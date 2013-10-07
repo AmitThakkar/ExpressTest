@@ -1,3 +1,7 @@
+exports.dependencies = {
+    User: ""
+};
+
 exports.get = function (id, callback) {
     callback({id: id});
 };
