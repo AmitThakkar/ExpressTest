@@ -1,0 +1,8 @@
+.idea
+.idea/
+*ipr
+*.iml
+node_modules/express
+node_modules/async
+node_modules/mongoose
+node_modules/underscore

@@ -1,0 +1,13 @@
+{
+    "common": {
+        "port": 8081
+    },
+    "development": {
+        "port": 8082,
+        "serverUrl": "http://localhost:"
+    },
+    "qa": {
+        "port": 8083,
+        "serverUrl": "http://qa.localhost:"
+    }
+}
