@@ -1,13 +1,37 @@
 {
     "common": {
-        "port": 8081
+        "port": 8081,
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost/ExpressTest"
+            }
+        }
     },
     "development": {
         "port": 8082,
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost/ExpressTestDevelopment"
+            }
+        },
         "serverUrl": "http://localhost:"
     },
     "qa": {
         "port": 8083,
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost/ExpressTestQA"
+            }
+        },
+        "serverUrl": "http://qa.localhost:"
+    },
+    "production": {
+        "port": 8084,
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost/ExpressTestProduction"
+            }
+        },
         "serverUrl": "http://qa.localhost:"
     }
 }

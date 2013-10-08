@@ -26,7 +26,11 @@ exports.actions = {
         });
     },
     save: function (request, response) {
-        exports.dependencies.UserService.save(request.query.newUserData, function (user) {
+        var userCO = {
+            username: request.body.username,
+            password: request.body.password
+        };
+        exports.dependencies.UserService.save(userCO, function (user) {
             response.end(JSON.stringify(user));
         });
     }
