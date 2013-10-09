@@ -7,14 +7,14 @@ exports.dependencies = {
 
 exports.get = function (id) {
     var emitter = new EventEmitter();
-    exports.dependencies.User.findById(id, function (error, user) {
+    exports.dependencies.User.findById(id, function (error, users) {
         if (error) {
             console.log("Error Occur in UserService.get", error);
             emitter.emit(ResponseStatus.ERROR);
-        } else if (user && user.length > 0) {
-            emitter.emit(ResponseStatus.SUCCESS, user[0]);
+        } else if (users && users.length > 0) {
+            emitter.emit(ResponseStatus.SUCCESS, users[0]);
         } else {
-            console.log("No user found with Id -> ", id);
+            console.log("No users found with Id -> ", id);
             emitter.emit(ResponseStatus.NOT_FOUND);
         }
     });
@@ -67,6 +67,22 @@ exports.update = function (userCO) {
             emitter.emit(ResponseStatus.SUCCESS);
         } else {
             console.log("No user found with Id -> ", userCO._id);
+            emitter.emit(ResponseStatus.NOT_FOUND);
+        }
+    });
+    return emitter;
+};
+
+exports.list = function (max, offset) {
+    var emitter = new EventEmitter();
+    exports.dependencies.User.findAll(max, offset, function (error, users) {
+        if (error) {
+            console.log("Error Occur in UserService.get", error);
+            emitter.emit(ResponseStatus.ERROR);
+        } else if (users && users.length > 0) {
+            emitter.emit(ResponseStatus.SUCCESS, users);
+        } else {
+            console.log("No users found with Id -> ", id);
             emitter.emit(ResponseStatus.NOT_FOUND);
         }
     });

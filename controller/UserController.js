@@ -91,5 +91,23 @@ exports.actions = {
                 response.writeHead(202, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             });
+    },
+    list: function (request, response) {
+        exports.dependencies.UserService.list(request.query.max, request.query.offset)
+            .on(ResponseStatus.ERROR, function () {
+                var body = "Error Occur, Please try later.";
+                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.end(body);
+            })
+            .on(ResponseStatus.NOT_FOUND, function () {
+                var body = "User not found with Max and offset -> " + request.query.max + " And " + request.query.offset;
+                response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.end(body);
+            })
+            .on(ResponseStatus.SUCCESS, function (users) {
+                var body = JSON.stringify(users);
+                response.writeHead(200, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.end(body);
+            });
     }
 };
