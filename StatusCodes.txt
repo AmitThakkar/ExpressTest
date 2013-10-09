@@ -1,6 +1,7 @@
 200 OK
 201 Created
 202 Updated
+203 Invalid Data
 204 No Content
 500 Internal Server Error
 

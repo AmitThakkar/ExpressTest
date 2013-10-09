@@ -1,3 +1,5 @@
+var ResponseStatus = require("../src/enum/ResponseStatus");
+
 exports.allowedMethods = {
     "get": ["GET"],
     "delete": ["GET", "DELETE"],
@@ -12,37 +14,37 @@ exports.dependencies = {
 exports.actions = {
     get: function (request, response) {
         exports.dependencies.UserService.get(request.query.id)
-            .on("500", function () {
+            .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("204", function () {
+            .on(ResponseStatus.NOT_FOUND, function () {
                 var body = "User not found with Id -> " + request.query.id;
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("200", function (user) {
+            .on(ResponseStatus.SUCCESS, function (user) {
                 var body = JSON.stringify(user);
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(200, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             });
     },
     delete: function (request, response) {
         exports.dependencies.UserService.delete(request.query.id)
-            .on("500", function () {
+            .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("204", function () {
+            .on(ResponseStatus.NOT_FOUND, function () {
                 var body = "User not found with Id -> " + request.query.id;
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("200", function () {
+            .on(ResponseStatus.SUCCESS, function () {
                 var body = "User Deleted, id -> " + request.query.id;
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(200, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             });
     },
@@ -52,19 +54,19 @@ exports.actions = {
             password: request.body.password
         };
         exports.dependencies.UserService.save(userCO)
-            .on("500", function () {
+            .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("201", function (user) {
+            .on(ResponseStatus.SUCCESS, function (user) {
                 var body = JSON.stringify(user);
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(201, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("???", function () {
+            .on(ResponseStatus.NOT_UPDATED, function () {
                 var body = "User not saved";
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(203, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             });
     },
@@ -74,19 +76,19 @@ exports.actions = {
             password: request.body.password
         };
         exports.dependencies.UserService.update(userCO)
-            .on("500", function () {
+            .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("204", function () {
+            .on(ResponseStatus.NOT_FOUND, function () {
                 var body = "User not found with Id -> " + userCO._id;
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on("202", function (user) {
+            .on(ResponseStatus.SUCCESS, function (user) {
                 var body = JSON.stringify(user);
-                response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
+                response.writeHead(202, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             });
     }
