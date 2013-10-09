@@ -2,6 +2,7 @@ var ResponseStatus = require("../src/enum/ResponseStatus");
 
 exports.allowedMethods = {
     "get": ["GET"],
+    "list": ["GET"],
     "delete": ["GET", "DELETE"],
     "save": ["POST"],
     "update": ["PUT", "POST"]
