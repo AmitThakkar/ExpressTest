@@ -59,7 +59,7 @@ exports.save = function (userCO) {
 
 exports.update = function (userCO) {
     var emitter = new EventEmitter();
-    new exports.dependencies.User.updateUser(userCO, function (error, updateCount) {
+    exports.dependencies.User.updateUser(userCO, function (error, updateCount) {
         if (error) {
             console.log("Error Occur in UserService.update", error);
             emitter.emit(ResponseStatus.ERROR);

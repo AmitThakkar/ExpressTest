@@ -25,7 +25,9 @@ User.statics.removeById = function (id, callback) {
     this.remove({ _id: ObjectId(id)}, callback);
 };
 User.statics.updateUser = function (userCO, callback) {
-    User.update({ _id: ObjectId(userCO._id)}, userCO, {multi: false, upsert: false}, callback);
+    var _id = userCO._id;
+    delete userCO._id;
+    this.update({ _id: ObjectId(_id)}, userCO, {multi: false, upsert: false}, callback);
 };
 
 module.exports = mongoose.model('User', User);

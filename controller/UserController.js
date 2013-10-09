@@ -73,6 +73,7 @@ exports.actions = {
     },
     update: function (request, response) {
         var userCO = {
+            _id: request.body._id,
             username: request.body.username,
             password: request.body.password
         };
@@ -87,8 +88,8 @@ exports.actions = {
                 response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on(ResponseStatus.SUCCESS, function (user) {
-                var body = JSON.stringify(user);
+            .on(ResponseStatus.SUCCESS, function () {
+                var body = "User Updated, content -> " + JSON.stringify(userCO);
                 response.writeHead(202, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             });
