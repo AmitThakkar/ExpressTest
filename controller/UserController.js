@@ -14,7 +14,7 @@ exports.dependencies = {
 
 exports.actions = {
     get: function (request, response) {
-        exports.dependencies.UserService.get(request.query.id)
+        exports.dependencies.UserService.get(request.param("id"))
             .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
@@ -32,7 +32,7 @@ exports.actions = {
             });
     },
     delete: function (request, response) {
-        exports.dependencies.UserService.delete(request.query.id)
+        exports.dependencies.UserService.delete(request.param("id"))
             .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
@@ -95,7 +95,7 @@ exports.actions = {
             });
     },
     list: function (request, response) {
-        exports.dependencies.UserService.list(request.query.max, request.query.offset)
+        exports.dependencies.UserService.list(request.param("max"), request.param("offset"))
             .on(ResponseStatus.ERROR, function () {
                 var body = "Error Occur, Please try later.";
                 response.writeHead(500, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
