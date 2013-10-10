@@ -78,12 +78,22 @@ exports.list = function (max, offset) {
     var emitter = new EventEmitter();
     exports.dependencies.User.findAll(max, offset, function (error, users) {
         if (error) {
-            console.log("Error Occur in UserService.get", error);
+            console.log("Error Occur in UserService.list", error);
             emitter.emit(ResponseStatus.ERROR);
         } else if (users && users.length > 0) {
-            emitter.emit(ResponseStatus.SUCCESS, users);
+            exports.dependencies.User.count(function (error, count) {
+                if (error) {
+                    console.log("Error Occur in UserService.list", error);
+                    emitter.emit(ResponseStatus.ERROR);
+                } else if (count) {
+                    emitter.emit(ResponseStatus.SUCCESS, {total: count, users: users});
+                } else {
+                    console.log("User not found with Max and offset -> " + max + " And " + offset);
+                    emitter.emit(ResponseStatus.NOT_FOUND);
+                }
+            });
         } else {
-            console.log("No users found with Id -> ", id);
+            console.log("User not found with Max and offset -> " + max + " And " + offset);
             emitter.emit(ResponseStatus.NOT_FOUND);
         }
     });

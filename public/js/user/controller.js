@@ -9,10 +9,19 @@ function serialize(obj) {
 
 angular.module('meanStack.user.controllers', [])
     .controller('UserListController', ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+        var offset = parseInt($routeParams.offset, 10);
+        var max = parseInt($routeParams.max, 10);
         $http.get("/user/list/" + $routeParams.max + "/" + $routeParams.offset)
             .success(function (data, status) {
                 if (status == 200) {
-                    $scope.users = data;
+                    $scope.users = data.users;
+                    var total = parseInt(data.total, 10);
+                    $scope.listParams = {
+                        max: max,
+                        nextOffset: ((offset + max) >= total) ? -1 : offset + max,
+                        previousOffset: offset == 0 ? -1 : offset - max
+                    };
+                    $scope.listParams.total = data.total;
                 } else {
                     alert(data);
                 }

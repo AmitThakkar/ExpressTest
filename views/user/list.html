@@ -1,21 +1,21 @@
 <a ng-href="#/user/create">New Create</a>
-<ul class="menu">
-    <table>
-        <thead>
-        <tr>
-            <td>Username</td>
-            <td>Password</td>
-            <td></td>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="user in users">
-            <td><a ng-href="#/user/show/{{user._id}}">{{user.username}}</a></td>
-            <td>{{user.password}}</td>
-            <td><input type="button" value="Delete" ng-click="removeUser($index, user._id)"/></td>
-            <td><a ng-href="#/user/edit/{{user._id}}">Edit</a></td>
-        </tr>
-        </tbody>
-    </table>
-</ul>
+<table>
+    <thead>
+    <tr>
+        <td>Username</td>
+        <td>Password</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in users">
+        <td><a ng-href="#/user/show/{{user._id}}">{{user.username}}</a></td>
+        <td>{{user.password}}</td>
+        <td><input type="button" value="Delete" ng-click="removeUser($index, user._id)"/></td>
+        <td><a ng-href="#/user/edit/{{user._id}}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<a ng-href="{{ listParams.previousOffset == -1 && 'javascript:void(0)' || '#/user/list/' + listParams.max + '/' + listParams.previousOffset }}">Previous</a>
+<a ng-href="{{ listParams.nextOffset == -1 && 'javascript:void(0)' || '#/user/list/' + listParams.max + '/' + listParams.nextOffset }}">Next</a>
