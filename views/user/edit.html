@@ -1,1 +1,16 @@
-Edit
+<a ng-href="#/user/list/20/0">List</a>
+<input type="button" value="Delete" ng-click="removeUser(user._id)"/>
+<table>
+    <tr>
+        <td>Username</td>
+        <td><input type="text" ng-model="user.username"/></td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td><input type="password" ng-model="user.password"/></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="Reset" ng-click="reset()"  /></td>
+        <td><input type="button" value="Update" ng-click="updateUser()" /></td>
+    </tr>
+</table>
