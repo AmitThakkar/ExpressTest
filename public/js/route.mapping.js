@@ -2,8 +2,9 @@
 
 angular.module('meanStack', ["meanStack.controllers", "meanStack.user.controllers"]).
     config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {templateUrl: '_dashboard.html', controller: 'DashboardController'});
-        $routeProvider.when('/user/list', {templateUrl: 'user/list.html', controller: "UserListController"});
+        $routeProvider.when('/', {templateUrl: 'dashboard.html', controller: 'DashboardController'});
+        $routeProvider.when('/user/list/:max/:offset', {templateUrl: 'user/list.html', controller: "UserListController"});
         $routeProvider.when('/user/create', {templateUrl: 'user/create.html', controller: "UserCreateController"});
+        $routeProvider.when('/user/show/:id', {templateUrl: 'user/show.html', controller: "UserShowController"});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
