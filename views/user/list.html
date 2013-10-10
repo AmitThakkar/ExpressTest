@@ -4,9 +4,22 @@
     <title></title>
 </head>
 <body>
-List
+Users
 <ul class="menu">
-    <li><a href="#/user/create">Create</a></li>
+    <table>
+        <thead>
+        <tr>
+            <td>Username</td>
+            <td>Password</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td><a href="/user/show/{{user.username}}">{{user.username}}</a></td>
+            <td>{{user.password}}</td>
+        </tr>
+        </tbody>
+    </table>
 </ul>
 </body>
 </html>
