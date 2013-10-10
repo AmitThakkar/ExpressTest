@@ -51,8 +51,8 @@ exports.actions = {
     },
     save: function (request, response) {
         var userCO = {
-            username: request.body.username,
-            password: request.body.password
+            username: request.param("username"),
+            password: request.param("password")
         };
         exports.dependencies.UserService.save(userCO)
             .on(ResponseStatus.ERROR, function () {
@@ -65,7 +65,7 @@ exports.actions = {
                 response.writeHead(201, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
-            .on(ResponseStatus.NOT_UPDATED, function () {
+            .on(ResponseStatus.NOT_SAVED, function () {
                 var body = "User not saved";
                 response.writeHead(203, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
@@ -73,9 +73,9 @@ exports.actions = {
     },
     update: function (request, response) {
         var userCO = {
-            _id: request.body._id,
-            username: request.body.username,
-            password: request.body.password
+            _id: request.param("_id"),
+            username: request.param("username"),
+            password: request.param("password")
         };
         exports.dependencies.UserService.update(userCO)
             .on(ResponseStatus.ERROR, function () {

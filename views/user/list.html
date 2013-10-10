@@ -1,15 +1,17 @@
-Users
+<a ng-href="#/user/create">New Create</a>
 <ul class="menu">
     <table>
         <thead>
         <tr>
+            <td>Id</td>
             <td>Username</td>
             <td>Password</td>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="user in users">
-            <td><a href="#/user/show/{{user._id}}">{{user.username}}</a></td>
+            <td><a ng-href="#/user/show/{{user._id}}">{{user._id}}</a></td>
+            <td><a ng-href="#/user/show/{{user._id}}">{{user.username}}</a></td>
             <td>{{user.password}}</td>
         </tr>
         </tbody>

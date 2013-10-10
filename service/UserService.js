@@ -52,7 +52,7 @@ exports.save = function (userCO) {
                 emitter.emit(ResponseStatus.SUCCESS, user.toObject());
             } else {
                 console.log("User Not saved with details", JSON.stringify(userCO));
-                emitter.emit(ResponseStatus.NOT_UPDATED);
+                emitter.emit(ResponseStatus.NOT_SAVED);
             }
         });
     return emitter;

@@ -1,1 +1,15 @@
-Create
+<a ng-href="#/user/list/20/0">Back to list</a>
+<table>
+    <tr>
+        <td>Username</td>
+        <td><input type="text" ng-model="user.username"/></td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td><input type="password" ng-model="user.password"/></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="Reset" ng-click="reset()"  /></td>
+        <td><input type="button" value="Save" ng-click="saveUser()" /></td>
+    </tr>
+</table>
