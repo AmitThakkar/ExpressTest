@@ -1,5 +1,6 @@
 var EventEmitter = require("events").EventEmitter;
 var ResponseStatus = require("../src/enum/ResponseStatus");
+var Roles = require("../src/enum/Roles");
 
 exports.dependencies = {
     User: ""
@@ -42,7 +43,7 @@ exports.save = function (userCO) {
     new exports.dependencies.User({
         username: userCO.username,
         password: userCO.password,
-        role: ["User"]
+        role: [Roles.USER]
     }).save(function (error, user) {
             if (error) {
                 console.log("Error Occur in UserService.save", error);

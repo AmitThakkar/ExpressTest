@@ -1,4 +1,4 @@
-module.exports = exports = {
+exports = module.exports = {
     ERROR: "ERROR",
     SUCCESS: "SUCCESS",
     NOT_FOUND: "NOT_FOUND",

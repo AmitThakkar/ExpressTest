@@ -14,6 +14,13 @@ User.statics.findById = function (id, projection, callback) {
     }
     this.find({ _id: ObjectId(id)}, projection, callback);
 };
+User.statics.findByUsername = function (username, projection, callback) {
+    if (!callback) {
+        callback = projection;
+        projection = {};
+    }
+    this.find({ username: username}, projection, callback);
+};
 User.statics.findAll = function (max, offset, projection, callback) {
     if (!callback) {
         callback = projection;
