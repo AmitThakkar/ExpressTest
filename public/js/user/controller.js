@@ -13,8 +13,25 @@ angular.module('meanStack.user.controllers', [])
             .error(function (data, status) {
                 alert(data, status)
             });
+        $scope.removeUser = function (index, id) {
+            if (confirm("Are you sure?")) {
+                $http.delete("/user/delete/" + id)
+                    .success(function (data, status) {
+                        if (status == 200) {
+                            $scope.users.splice(index, 1);
+                            $scope.$apply();
+                            alert("User Deleted");
+                        } else {
+                            alert(data);
+                        }
+                    })
+                    .error(function (data, error) {
+                        alert(data);
+                    });
+            }
+        };
     }])
-    .controller('UserShowController', ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+    .controller('UserShowController', ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
         $http.get("/user/get/" + $routeParams.id)
             .success(function (data, status) {
                 if (status == 200) {
@@ -26,6 +43,22 @@ angular.module('meanStack.user.controllers', [])
             .error(function (data, status) {
                 alert(data, status)
             });
+        $scope.removeUser = function (id) {
+            if (confirm("Are you sure?")) {
+                $http.delete("/user/delete/" + id)
+                    .success(function (data, status) {
+                        if (status == 200) {
+                            $location.path("/user/list/20/0");
+                            $scope.$apply();
+                        } else {
+                            alert(data);
+                        }
+                    })
+                    .error(function (data, error) {
+                        alert(data);
+                    });
+            }
+        };
     }])
     .controller('UserCreateController', ["$scope", "$http", "$location", function ($scope, $http, $location) {
         var serialize = function (obj) {

@@ -3,16 +3,16 @@
     <table>
         <thead>
         <tr>
-            <td>Id</td>
             <td>Username</td>
             <td>Password</td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="user in users">
-            <td><a ng-href="#/user/show/{{user._id}}">{{user._id}}</a></td>
             <td><a ng-href="#/user/show/{{user._id}}">{{user.username}}</a></td>
             <td>{{user.password}}</td>
+            <td><input type="button" value="Delete" ng-click="removeUser($index, user._id)"/></td>
         </tr>
         </tbody>
     </table>
