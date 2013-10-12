@@ -15,13 +15,12 @@ angular.module('meanStack.user.controllers', [])
             .success(function (data, status) {
                 if (status == 200) {
                     $scope.users = data.users;
-                    var total = parseInt(data.total, 10);
+                    $scope.total = parseInt(data.total, 10);
                     $scope.listParams = {
                         max: max,
-                        nextOffset: ((offset + max) >= total) ? -1 : offset + max,
+                        nextOffset: ((offset + max) >= $scope.total) ? -1 : offset + max,
                         previousOffset: offset == 0 ? -1 : offset - max
                     };
-                    $scope.listParams.total = data.total;
                 } else {
                     alert(data);
                 }
@@ -64,7 +63,7 @@ angular.module('meanStack.user.controllers', [])
                 $http.delete("/user/delete/" + id)
                     .success(function (data, status) {
                         if (status == 200) {
-                            $location.path("/user/list/20/0");
+                            $location.path("/user/list/10/0");
                             $scope.$apply();
                         } else {
                             alert(data);
@@ -85,9 +84,10 @@ angular.module('meanStack.user.controllers', [])
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                 }
-            }).success(function (data, status) {
+            })
+                .success(function (data, status) {
                     if (status == 201) {
-                        $location.path("/user/list/20/0");
+                        $location.path("/user/list/10/0");
                     } else {
                         alert(data);
                     }
@@ -134,7 +134,7 @@ angular.module('meanStack.user.controllers', [])
                 $http.delete("/user/delete/" + id)
                     .success(function (data, status) {
                         if (status == 200) {
-                            $location.path("/user/list/20/0");
+                            $location.path("/user/list/10/0");
                             $scope.$apply();
                         } else {
                             alert(data);
