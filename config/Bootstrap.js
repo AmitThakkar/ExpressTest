@@ -1,3 +1,5 @@
+"use strict";
+
 var Roles = require("../src/enum/Roles");
 
 exports.init = function () {

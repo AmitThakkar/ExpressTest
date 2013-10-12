@@ -1,3 +1,5 @@
+"use strict";
+
 var ResponseStatus = require("../src/enum/ResponseStatus");
 
 exports.allowedMethods = {

@@ -1,3 +1,5 @@
+"use strict";
+
 var EventEmitter = require("events").EventEmitter;
 var ResponseStatus = require("../src/enum/ResponseStatus");
 var Roles = require("../src/enum/Roles");

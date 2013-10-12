@@ -1,4 +1,6 @@
-exports = module.exports = {
+"use strict";
+
+module.exports = {
     ERROR: "ERROR",
     SUCCESS: "SUCCESS",
     NOT_FOUND: "NOT_FOUND",
