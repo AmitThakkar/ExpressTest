@@ -23,7 +23,7 @@ exports.actions = {
                 response.end(body);
             })
             .on(ResponseStatus.NOT_FOUND, function () {
-                var body = "User not found with Id -> " + request.query.id;
+                var body = "User not found with Id -> " + request.param("id");
                 response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
@@ -41,7 +41,7 @@ exports.actions = {
                 response.end(body);
             })
             .on(ResponseStatus.NOT_FOUND, function () {
-                var body = "User not found with Id -> " + request.query.id;
+                var body = "User not found with Id -> " + request.param("id");
                 response.writeHead(204, {'Content-Length': body.length, 'Content-Type': 'text/plain' });
                 response.end(body);
             })
