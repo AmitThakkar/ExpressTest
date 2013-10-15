@@ -1,6 +1,6 @@
 {
     "UserController": {
-        "UserService": "PersonService"
+        "UserService": "UserService"
     },
     "PersonService": {
 

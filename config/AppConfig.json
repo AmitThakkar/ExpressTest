@@ -3,7 +3,7 @@
         "port": 8081,
         "dataSource": {
             "mongo": {
-                "url": "mongodb://localhost/ExpressTest"
+                "url": "mongodb://localhost/MeanStack"
             }
         }
     },
@@ -11,27 +11,27 @@
         "port": 8082,
         "dataSource": {
             "mongo": {
-                "url": "mongodb://localhost/ExpressTestDevelopment"
+                "url": "mongodb://localhost/MeanStackDevelopment"
             }
         },
-        "serverUrl": "http://localhost:"
+        "serverUrl": "http://localhost:8082"
     },
     "qa": {
         "port": 8083,
         "dataSource": {
             "mongo": {
-                "url": "mongodb://localhost/ExpressTestQA"
+                "url": "mongodb://qa4.intelligrape.net:27017/MeanStackQA"
             }
         },
-        "serverUrl": "http://qa.localhost:"
+        "serverUrl": "http://amitthakkariad.herokuapp.com"
     },
     "production": {
         "port": 8084,
         "dataSource": {
             "mongo": {
-                "url": "mongodb://localhost/ExpressTestProduction"
+                "url": "mongodb://localhost/MeanStackProduction"
             }
         },
-        "serverUrl": "http://qa.localhost:"
+        "serverUrl": "http://qa.localhost:8084"
     }
 }
