@@ -72,8 +72,9 @@ angular.module("meanStack.user.controllers", [])
         $scope.saveUser = function () {
             $http.post("/user/save", serialize({
                 username: $scope.user.username,
-                password: $scope.user.password
-            }), {
+                password: $scope.user.password,
+                role: $scope.user.role
+        }), {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                 }
@@ -104,10 +105,11 @@ angular.module("meanStack.user.controllers", [])
                 });
             $scope.updateUser = function () {
                 $http.put("/user/update", serialize({
-                    _id: $scope.user._id,
-                    username: $scope.user.username,
-                    password: $scope.user.password
-                }), {
+            _id: $scope.user._id,
+            username: $scope.user.username,
+            password: $scope.user.password,
+            role: $scope.user.role
+        }), {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                     }
