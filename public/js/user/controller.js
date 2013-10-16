@@ -1,14 +1,7 @@
-'use strict';
+"use strict";
 
-function serialize(obj) {
-    var str = [];
-    for (var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-    return str.join("&");
-}
-
-angular.module('meanStack.user.controllers', [])
-    .controller('UserListController', ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+angular.module("meanStack.user.controllers", [])
+    .controller("UserListController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
         var offset = parseInt($routeParams.offset, 10);
         var max = parseInt($routeParams.max, 10);
         $http.get("/user/list/" + $routeParams.max + "/" + $routeParams.offset)
@@ -26,7 +19,7 @@ angular.module('meanStack.user.controllers', [])
                 }
             })
             .error(function (data, status) {
-                alert(data, status)
+                alert(data, status);
             });
         $scope.removeUser = function (index, id) {
             if (confirm("Are you sure?")) {
@@ -46,7 +39,7 @@ angular.module('meanStack.user.controllers', [])
             }
         };
     }])
-    .controller('UserShowController', ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
+    .controller("UserShowController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
         $http.get("/user/get/" + $routeParams.id)
             .success(function (data, status) {
                 if (status == 200) {
@@ -75,14 +68,14 @@ angular.module('meanStack.user.controllers', [])
             }
         };
     }])
-    .controller('UserCreateController', ["$scope", "$http", "$location", function ($scope, $http, $location) {
+    .controller("UserCreateController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
         $scope.saveUser = function () {
-            $http.post("/user/save", serialize({ // TODO if you are using jQuery then replace serialize with $.param
+            $http.post("/user/save", serialize({
                 username: $scope.user.username,
                 password: $scope.user.password
             }), {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                 }
             })
                 .success(function (data, status) {
@@ -97,30 +90,11 @@ angular.module('meanStack.user.controllers', [])
                 });
         };
     }])
-    .controller('UserEditController', ["$scope", "$http", "$location", "$routeParams", function ($scope, $http, $location, $routeParams) {
-        $http.get("/user/get/" + $routeParams.id)
-            .success(function (data, status) {
-                if (status == 200) {
-                    $scope.user = data;
-                } else {
-                    alert(data);
-                }
-            })
-            .error(function (data, status) {
-                alert(data, status)
-            });
-        $scope.updateUser = function () {
-            $http.put("/user/update", serialize({ // TODO if you are using jQuery then replace serialize with $.param
-                _id: $scope.user._id,
-                username: $scope.user.username,
-                password: $scope.user.password
-            }), {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                }
-            }).success(function (data, status) {
-                    if (status == 202) {
-                        $location.path("/user/show/" + $routeParams.id);
+    .controller("UserEditController", ["$scope", "$http", "$location", "$routeParams", function ($scope, $http, $location, $routeParams) {
+            $http.get("/user/get/" + $routeParams.id)
+                .success(function (data, status) {
+                    if (status == 200) {
+                        $scope.user = data;
                     } else {
                         alert(data);
                     }
@@ -128,21 +102,40 @@ angular.module('meanStack.user.controllers', [])
                 .error(function (data, status) {
                     alert(data, status)
                 });
-        };
-        $scope.removeUser = function (id) {
-            if (confirm("Are you sure?")) {
-                $http.delete("/user/delete/" + id)
-                    .success(function (data, status) {
-                        if (status == 200) {
-                            $location.path("/user/list/10/0");
-                            $scope.$apply();
+            $scope.updateUser = function () {
+                $http.put("/user/update", serialize({
+                    _id: $scope.user._id,
+                    username: $scope.user.username,
+                    password: $scope.user.password
+                }), {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+                    }
+                }).success(function (data, status) {
+                        if (status == 202) {
+                            $location.path("/user/show/" + $routeParams.id);
                         } else {
                             alert(data);
                         }
                     })
-                    .error(function (data, error) {
-                        alert(data);
+                    .error(function (data, status) {
+                        alert(data, status)
                     });
-            }
-        };
-    }]);
+            };
+            $scope.removeUser = function (id) {
+                if (confirm("Are you sure?")) {
+                    $http.delete("/user/delete/" + id)
+                        .success(function (data, status) {
+                            if (status == 200) {
+                                $location.path("/user/list/10/0");
+                                $scope.$apply();
+                            } else {
+                                alert(data);
+                            }
+                        })
+                        .error(function (data, error) {
+                            alert(data);
+                        });
+                }
+            };
+        }]);
