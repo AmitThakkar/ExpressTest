@@ -1,11 +1,17 @@
 'use strict';
 
+var routeProvider;
+function addRouteMapping() {
+    _.each(getUserRoute(), function (route) {
+        routeProvider.when(route.routeURL, {templateUrl: route.templateUrl, controller: route.controller});
+    });
+}
+
 angular.module('meanStack', ["meanStack.controllers", "meanStack.user.controllers"]).
     config(['$routeProvider', function ($routeProvider) {
+        routeProvider = $routeProvider;
         $routeProvider.when('/', {templateUrl: 'dashboard.html', controller: 'DashboardController'});
-        $routeProvider.when('/user/list/:max/:offset', {templateUrl: 'user/list.html', controller: "UserListController"});
-        $routeProvider.when('/user/create', {templateUrl: 'user/create.html', controller: "UserCreateController"});
-        $routeProvider.when('/user/show/:id', {templateUrl: 'user/show.html', controller: "UserShowController"});
-        $routeProvider.when('/user/edit/:id', {templateUrl: 'user/edit.html', controller: "UserEditController"});
+        addRouteMapping();
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
+

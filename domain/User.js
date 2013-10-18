@@ -23,6 +23,13 @@ User.statics.findAll = function (max, offset, projection, callback) {
     }
     this.find({}, projection, {limit: max, skip: offset}, callback);
 };
+User.statics.findByUsername = function (username, projection, callback) {
+    if (!callback) {
+        callback = projection;
+        projection = {};
+    }
+    this.find({ username: username}, projection, callback);
+};
 User.statics.removeById = function (id, callback) {
     this.remove({ _id: ObjectId(id)}, callback);
 };
