@@ -7,7 +7,7 @@ function addRouteMapping() {
     });
 }
 
-angular.module('meanStack', ["meanStack.controllers", "meanStack.user.controllers"]).
+angular.module('meanStack', ["meanStack.constants", "meanStack.controllers", "meanStack.user.controllers"]).
     config(['$routeProvider', function ($routeProvider) {
         routeProvider = $routeProvider;
         $routeProvider.when('/', {templateUrl: 'dashboard.html', controller: 'DashboardController'});
