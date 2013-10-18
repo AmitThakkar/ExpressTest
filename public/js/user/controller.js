@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("meanStack.user.controllers", [])
-    .controller("UserListController", ["$scope", "$http", "$routeParams", "RESPONSE",
+    .controller("UserListController", ["$scope", "$http", "$routeParams", "RESPONSE", 
         function ($scope, $http, $routeParams, RESPONSE) {
             var offset = parseInt($routeParams.offset, 10);
             var max = parseInt($routeParams.max, 10);
@@ -40,7 +40,7 @@ angular.module("meanStack.user.controllers", [])
                 }
             };
         }])
-    .controller("UserShowController", ["$scope", "$http", "$routeParams", "$location", "RESPONSE",
+    .controller("UserShowController", ["$scope", "$http", "$routeParams", "$location", "RESPONSE", 
         function ($scope, $http, $routeParams, $location, RESPONSE) {
             $http.get("/user/get/" + $routeParams.id)
                 .success(function (data, status) {
@@ -70,7 +70,7 @@ angular.module("meanStack.user.controllers", [])
                 }
             };
         }])
-    .controller("UserCreateController", ["$scope", "$http", "$location", "RESPONSE",
+    .controller("UserCreateController", ["$scope", "$http", "$location", "RESPONSE", 
         function ($scope, $http, $location, RESPONSE) {
             $scope.saveUser = function () {
                 $http.post("/user/save", serialize({
@@ -94,7 +94,7 @@ angular.module("meanStack.user.controllers", [])
                     });
             };
         }])
-    .controller("UserEditController", ["$scope", "$http", "$location", "$routeParams", "RESPONSE",
+    .controller("UserEditController", ["$scope", "$http", "$location", "$routeParams", "RESPONSE", 
         function ($scope, $http, $location, $routeParams, RESPONSE) {
             $http.get("/user/get/" + $routeParams.id)
                 .success(function (data, status) {
