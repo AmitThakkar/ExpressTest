@@ -2,7 +2,7 @@
 <hr/>
 Total Record: {{total}}
 <hr/>
-<table>
+<table class="table table-hover table-bordered">
     <thead>
     <tr>
         <td>Username</td>
@@ -15,8 +15,8 @@ Total Record: {{total}}
     <tr ng-repeat="user in users">
         <td><a ng-href="#/user/show/{{user._id}}">{{user.username}}</a></td>
         <td>{{user.password}}</td>
-        <td><input type="button" value="Delete" ng-click="removeUser($index, user._id)"/></td>
         <td><a ng-href="#/user/edit/{{user._id}}">Edit</a></td>
+        <td><input type="button" value="Delete" ng-click="removeUser($index, user._id)"/></td>
     </tr>
     </tbody>
 </table>

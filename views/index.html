@@ -2,14 +2,36 @@
 <html ng-app="meanStack">
 <head>
     <title>Mean Stack</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- CSS -->
 </head>
 <body>
-<ul class="menu">
-    <li><a ng-href="#/">Dashboard</a></li>
-    <li><a ng-href="#/user/list/10/0">UserController</a></li>
-</ul>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a ng-href="#/" class="navbar-brand">Mean Stack</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/help/">Help</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top: 80px">
+    <div class="col-md-3 well">
+        <ul>
+            <li><a ng-href="#/">Dashboard</a></li>
+            <li><a ng-href="#/user/list/10/0">UserController</a></li>
+        </ul>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <div ng-view></div>
+    </div>
+</div>
 
-<div ng-view></div>
 
 <!-- JS -->
 <script type="text/javascript" src="js/angular.min.js"></script>
