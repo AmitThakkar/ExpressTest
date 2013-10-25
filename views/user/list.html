@@ -5,16 +5,20 @@ Total Record: {{total}}
 <table class="table table-hover table-bordered">
     <thead>
     <tr>
+        <td>ID</td>
         <td>Username</td>
         <td>Password</td>
+        <td>Role</td>
         <td></td>
         <td></td>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="user in users">
-        <td><a ng-href="#/user/show/{{user._id}}">{{user.username}}</a></td>
+        <td><a ng-href="#/user/show/{{user._id}}">{{user._id}}</a></td>
+        <td>{{user.username}}</td>
         <td>{{user.password}}</td>
+        <td>{{user.role}}</td>
         <td><a ng-href="#/user/edit/{{user._id}}">Edit</a></td>
         <td><input type="button" value="Delete" ng-click="removeUser($index, user._id)"/></td>
     </tr>
