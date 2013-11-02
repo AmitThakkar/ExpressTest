@@ -1,19 +1,9 @@
 'use strict';
 
 var routeProvider;
-var dependantModules = [
-    "meanStack.constants",
-    "meanStack.controllers",
-    "meanStack.user.controllers"
-];
 function addRouteMapping() {
-    var routes = [
-        getRoutes()
-    ];
-    _.each(routes, function (route) {
-        _.each(route, function (route) {
-            routeProvider.when(route.routeURL, {templateUrl: route.templateUrl, controller: route.controller});
-        });
+    _.each(getRoutes(), function (route) {
+        routeProvider.when(route.routeURL, {templateUrl: route.templateUrl, controller: route.controller});
     });
 }
 
