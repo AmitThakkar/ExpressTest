@@ -1,0 +1,28 @@
+<a ng-href="#/person/create">New Create</a>
+<hr/>
+Total Record: {{total}}
+<hr/>
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Place</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="person in persons">
+        <td><a ng-href="#/person/show/{{person._id}}">{{person._id}}</a></td>
+        <td>{{person.name}}</td>
+        <td>{{person.age}}</td>
+        <td>{{person.place}}</td>
+        <td><a ng-href="#/person/edit/{{person._id}}">Edit</a></td>
+        <td><input type="button" value="Delete" ng-click="removePerson($index, person._id)"/></td>
+    </tr>
+    </tbody>
+</table>
+<a ng-href="{{ listParams.previousOffset == -1 && 'javascript:void(0)' || '#/person/list/' + listParams.max + '/' + listParams.previousOffset }}">Previous</a>
+<a ng-href="{{ listParams.nextOffset == -1 && 'javascript:void(0)' || '#/person/list/' + listParams.max + '/' + listParams.nextOffset }}">Next</a>

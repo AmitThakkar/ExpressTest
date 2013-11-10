@@ -1,0 +1,17 @@
+<a ng-href="#/person/list/10/0">Back to list</a>
+<input type="button" value="Delete" ng-click="removePerson(person._id)"/>
+<a ng-href="#/person/edit/{{person._id}}">Edit</a>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>{{person.name}}</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>{{person.age}}</td>
+    </tr>
+    <tr>
+        <td>Place</td>
+        <td>{{person.place}}</td>
+    </tr>
+</table>
